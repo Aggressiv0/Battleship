@@ -1,6 +1,7 @@
 import pygame
 import pixels as px
 
+
 class Ship:
     def __init__(self, list_elem_ship, length):
         self.list_elem_ship = list_elem_ship
