@@ -1,7 +1,6 @@
 import pygame
 import font as ft
 import ships_file as shipfl
-import test
 
 
 class Button:
@@ -26,11 +25,11 @@ class Button:
             self.color = 'white'
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
 
-    def click_button(self, mouse):
+    def click_button(self, mouse, alert, set_start_time):
         if self.rect.collidepoint(mouse):
             print('Przycisk potwierdź')
-            shipfl.create_ships()
-            test.testy()
+            alert, set_start_time = shipfl.create_ships(alert, set_start_time)
+        return alert, set_start_time
 
 
 StartButton = Button(120, 400, 110, 35, 'white')

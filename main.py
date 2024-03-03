@@ -4,6 +4,9 @@ import pixels as px
 import start_button as stbtt
 import alert_file
 
+alert = False
+set_start_time = False
+start_time = 0
 run = True
 
 while run:
@@ -15,9 +18,12 @@ while run:
             run = False
         stbtt.StartButton.cover_button(mouse)
         if event.type == pygame.MOUSEBUTTONDOWN:
-            stbtt.StartButton.click_button(mouse)
+            alert, set_start_time = stbtt.StartButton.click_button(mouse, alert, set_start_time)
             for i in px.list_of_pixels:
                 px.Pixel.put_ship(i, mouse)
+    print(alert, 'x')
+    if alert:
+        alert, set_start_time, start_time = alert_file.alertf(alert, set_start_time, start_time)
     for i in px.list_of_pixels:
         px.Pixel.display_pixel(i, winfile.window)
     stbtt.StartButton.draw_button(winfile.window)

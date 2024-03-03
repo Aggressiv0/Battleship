@@ -11,7 +11,7 @@ class Ship:
 list_all_ships = []
 
 
-def create_ships():
+def create_ships(alert, set_start_time):
     length = 0
     list_elem_ship = []
     list_all_ships = []
@@ -28,10 +28,14 @@ def create_ships():
                         list_elem_ship.append(x)
                     else:
                         print('Błąd')
-                        break
+                        alert = True
+                        set_start_time = True
+                        return alert, set_start_time
             else:
                 print('Błąd')
-                break
+                alert = True
+                set_start_time = True
+                return alert, set_start_time
         if ((not px.list_of_pixels[x].is_there_ship
                 or (x-9) % 10 == 0
                 or x == 99) and length > 0):
@@ -41,6 +45,11 @@ def create_ships():
             length = 0
         if length > 4:
             print('Błąd')
-            break
+            alert = True
+            set_start_time = True
+            return alert, set_start_time
+    print(list_all_ships)
     for i in list_all_ships:
         print(i.list_elem_ship, i.length)
+    else:
+        return alert, set_start_time
