@@ -27,7 +27,7 @@ class Button:
 
     def click_button(self, mouse, alert, set_start_time):
         if self.rect.collidepoint(mouse):
-            print('Przycisk potwierdź')
+            # print('Przycisk potwierdź')
             alert, set_start_time = shipfl.create_ships(alert, set_start_time)
         return alert, set_start_time
 

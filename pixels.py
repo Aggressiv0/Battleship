@@ -31,15 +31,50 @@ class Pixel:
                 self.is_there_ship = False
 
 
-list_of_pixels = []
+# list_of_pixels = []
+#
+# start_x = 0
+# start_y = 30
+#
+# for i in range(100):
+#     if i % 10 == 0:
+#         start_y += 31
+#         start_x = 0
+#     start_x += 31
+#     pixel = Pixel(start_x, start_y, 30, 30, (255, 255, 255))
+#     list_of_pixels.append(pixel)
+#
+# start_x1 = 330
+# start_y1 = 30
+#
+# for i in range(100):
+#     if i % 10 == 0:
+#         start_y1 += 31
+#         start_x1 = 330
+#     start_x1 += 31
+#     pixel = Pixel(start_x1, start_y1, 30, 30, (255, 255, 255))
+#     list_of_pixels.append(pixel)
 
-start_x = 0
-start_y = 30
 
-for i in range(100):
-    if i % 10 == 0:
-        start_y += 31
-        start_x = 0
-    start_x += 31
-    pixel = Pixel(start_x, start_y, 30, 30, (255, 255, 255))
-    list_of_pixels.append(pixel)
+class Player:
+    def __init__(self, start_x, start_y):
+        self.list_of_pixels = []
+        self.start_x = start_x
+        self.start_y = start_y
+
+    def create_board(self):
+        const_start_x = self.start_x
+        for i in range(100):
+            if i % 10 == 0:
+                self.start_y += 31
+                self.start_x = const_start_x
+            self.start_x += 31
+            pixel = Pixel(self.start_x, self.start_y, 30, 30, (255, 255, 255))
+            self.list_of_pixels.append(pixel)
+
+
+player_one = Player(0, 30)
+player_two = Player(330, 30)
+
+player_one.create_board()
+player_two.create_board()

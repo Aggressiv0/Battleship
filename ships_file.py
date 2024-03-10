@@ -36,6 +36,12 @@ def create_ships(alert, set_start_time):
                 alert = True
                 set_start_time = True
                 return alert, set_start_time
+        print(length)
+        if length > 4:
+            print('Błąd')
+            alert = True
+            set_start_time = True
+            return alert, set_start_time
         if ((not px.list_of_pixels[x].is_there_ship
                 or (x-9) % 10 == 0
                 or x == 99) and length > 0):
@@ -43,11 +49,7 @@ def create_ships(alert, set_start_time):
             list_all_ships.append(ship)
             list_elem_ship = []
             length = 0
-        if length > 4:
-            print('Błąd')
-            alert = True
-            set_start_time = True
-            return alert, set_start_time
+
     print(list_all_ships)
     for i in list_all_ships:
         print(i.list_elem_ship, i.length)
