@@ -59,6 +59,7 @@ class Pixel:
 class Player:
     def __init__(self, start_x, start_y):
         self.list_of_pixels = []
+        self.list_of_ships = []
         self.start_x = start_x
         self.start_y = start_y
 
