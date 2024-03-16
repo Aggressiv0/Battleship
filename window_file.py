@@ -15,6 +15,6 @@ class Window:
         return window
 
 
-win1 = Window()
+win = Window()
 
-window1 = win1.create_widnow()
+window = win.create_widnow()
