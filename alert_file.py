@@ -13,5 +13,5 @@ def alertf(alert, set_start_time, start_time):
         print('Koniec czasu')
         start_time = 0
         alert = False
-    print(start_time, round(time.time() * 1000))
+    # print(start_time, round(time.time() * 1000))
     return alert, set_start_time, start_time
