@@ -45,10 +45,22 @@ def create_ships(alert, set_start_time, player):
         if ((not player.list_of_pixels[x].is_there_ship
                 or (x-9) % 10 == 0
                 or x == 99) and length > 0):
-            ship = Ship(list_elem_ship, length)
-            list_all_ships.append(ship)
-            list_elem_ship = []
-            length = 0
+            if length == 4:
+                ship = Ship(list_elem_ship, length)
+                list_all_ships.append(ship)
+                list_elem_ship = []
+                length = 0
+            else:
+                print('Błąd')
+                alert = True
+                set_start_time = True
+                return alert, set_start_time
+
+    if len(list_all_ships) == 0:
+        print('Błąd')
+        alert = True
+        set_start_time = True
+        return alert, set_start_time
 
     player.list_of_ships = list_all_ships
 

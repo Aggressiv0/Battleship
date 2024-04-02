@@ -11,6 +11,8 @@ set_start_time = False
 start_time = 0
 run = True
 
+place_scene = True
+
 while run:
     winfile.window.fill([0, 0, 0])
     bad_ship_pos = 0
@@ -18,38 +20,40 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-        mouse_structure = stbtt.StartButton1.cover_button(mouse)
-        mouse_structure += stbtt.StartButton2.cover_button(mouse)
+        if place_scene:
+            mouse_structure = stbtt.StartButton1.cover_button(mouse)
+            mouse_structure += stbtt.StartButton2.cover_button(mouse)
 
-        if mouse_structure > 0:
-            pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
-        else:
-            pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
+            if mouse_structure > 0:
+                pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
+            else:
+                pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            alert, set_start_time = stbtt.StartButton1.click_button(mouse, alert, set_start_time,
-                                                                    px.player_one)
-            alert, set_start_time = stbtt.StartButton2.click_button(mouse, alert, set_start_time,
-                                                                    px.player_two)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                alert, set_start_time = stbtt.StartButton1.click_button(mouse, alert, set_start_time,
+                                                                        px.player_one)
+                alert, set_start_time = stbtt.StartButton2.click_button(mouse, alert, set_start_time,
+                                                                        px.player_two)
 
-            #px.player_one.list_of_pixels
+                #px.player_one.list_of_pixels
 
-            for i in px.player_one.list_of_pixels:
-                px.Pixel.put_ship(i, mouse)
-            for i in px.player_two.list_of_pixels:
-                px.Pixel.put_ship(i, mouse)
+                for i in px.player_one.list_of_pixels:
+                    px.Pixel.put_ship(i, mouse)
+                for i in px.player_two.list_of_pixels:
+                    px.Pixel.put_ship(i, mouse)
 
     # print(alert, 'x')
-    if alert:
-        alert, set_start_time, start_time = alert_file.alertf(alert, set_start_time, start_time)
+    if place_scene:
+        if alert:
+            alert, set_start_time, start_time = alert_file.alertf(alert, set_start_time, start_time)
 
-    for i in px.player_one.list_of_pixels:
-        px.Pixel.display_pixel(i, winfile.window)
+        for i in px.player_one.list_of_pixels:
+            px.Pixel.display_pixel(i, winfile.window)
 
-    for i in px.player_two.list_of_pixels:
-        px.Pixel.display_pixel(i, winfile.window)
+        for i in px.player_two.list_of_pixels:
+            px.Pixel.display_pixel(i, winfile.window)
 
-    stbtt.StartButton1.draw_button(winfile.window)
-    stbtt.StartButton2.draw_button(winfile.window)
+        stbtt.StartButton1.draw_button(winfile.window)
+        stbtt.StartButton2.draw_button(winfile.window)
 
     pygame.display.update()
